@@ -1,0 +1,145 @@
+/*-----------------------general-----------------------*/
+body{
+    margin: 0;
+    padding: 0;
+}
+
+
+*{
+    font-family: 'Inter', sans-serif;
+}
+
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,50,0.8), rgba(0,0,50,0.8)), url(/img/meeting.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+
+/*-----------------------titulo-----------------------*/
+.form-box{
+    width: 90%;
+    max-width: 450px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 50px 60px 70px;
+    text-align: center;
+}
+
+.form-box h1{
+    margin-bottom: 60px;
+    color: #3c00a0;
+    position: relative;
+    font-weight: 700;
+}
+
+.form-box h1::after{
+    content: ' ';
+    width: 30px;
+    height: 4px;
+    border-radius: 3px;
+    background: #3c00a0;
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+/*-----------------------input-----------------------*/
+.input-field{
+    background: #eaeaea;
+    margin: 15px 0;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    max-height: 65px;
+    overflow: hidden;
+    transition: max-height 0.7s, opacity 0.3s;
+    opacity: 1;
+}
+
+.input-field.hidden {
+    max-height: 0;
+    opacity: 0;
+}
+
+input{
+    width: 100%;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    padding: 18px 15px;
+    font-size: 15px; 
+}
+.input-field i{
+    margin-left: 15px;
+    color: #999;
+}
+
+.form-box p{
+    text-align: left;
+    font-size: 15px;
+}
+
+form p a {
+    text-decoration: none;
+    color: #3c00a0;
+    font-weight: 700;
+}
+
+.btn-field{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-field button{
+    flex-basis: 48%;
+    background: #3c00a0;
+    color: #fff;
+    height: 40px;
+    border-radius: 20px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition: background 1s;
+    font-weight: 700;
+}
+
+
+
+
+.btn-field button.disable{
+    background: #eaeaea;
+    color: #555;
+}
+
+.btnSend{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btnSend button{
+    flex-basis: 48%;
+    background: #3c00a0;
+    color: #fff;
+    height: 40px;
+    border-radius: 20px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition: background 1s;
+    font-weight: 700;
+}
+
+.hidden{
+    display: none;
+}

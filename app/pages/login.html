@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="css/login.css">
+    <title>Register</title>
+</head>
+<body>
+    <div class="container">
+        <div class="form-box">
+            <h1 id="title">Sign Up</h1>
+            <p class="hidden" id="parrafoTop">Enter your email to reset your password.</p>
+            <form id="form">
+                <div class="input-group">
+                    <div class="input-field" id="nameField">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" name="name" placeholder="name">
+                    </div>
+                    <div class="input-field" id="emailField">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" name="email" placeholder="email">
+                    </div>
+                    <div class="input-field" id="passwordField">
+                        <i class="fa-solid fa-key"></i>
+                        <input type="password" name="password" placeholder="password">
+                    </div>
+                    <p class="" id="recoverPsw">Lost password <a href="#" id="forgotPsw" class="">Click here!</a></p>
+                </div>
+                <div class="btn-field">
+                    <button type="button" id="signUpBtn">Sign Up</button>
+                    <button class="disable" id="signInBtn" type="button">Sign In</button>
+                </div>
+                <div class="btnSend">
+                    <p class="hidden" id="parrafoBottom">Recovered your info? <a href="#" id="returnLogin">Return</a></p>
+                    <button type="button" class="hidden" id="sendBtn">Send</button>  
+                </div> 
+            </form>
+        </div>
+    </div>
+    <script src="js/login.js"></script>
+</body>
+</html>
