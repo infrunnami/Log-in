@@ -38,9 +38,10 @@ db.serialize(() =>{
 
 //server 
 const app = express();
-
+app.use(express.json());
 app.set('port',4000);
 app.listen(app.get('port'));
+
 console.log("server corriendo en ", app.get('port'))
 
 
@@ -62,12 +63,13 @@ app.get('/', (req, res)=> res.sendFile(__dirname + "/pages/login.html"));
 app.get('/admin', verificarAuth, (req, res) => {
     res.sendFile(path.join(__dirname, '/pages/admin/admin.html'));
 });
-app.get('/reset-password/:token', (req, res) => {
-    const token = req.params.token;
+app.get('/reset-password', (req, res) => {
+    const token = req.query.token;  // Aquí se recibe el token como parámetro de query
+    console.log("Token recibido en backend:", token);  // Verificación
     if (!token) {
-        return res.redirect('/');
+        return res.redirect('/'); 
     }
-    res.sendFile(path.join(__dirname, '/pages/reset-password.html'));
+    res.sendFile(path.join(__dirname, '/pages/reset-password.html'));  // Servir la página de reset
 });
 
 

@@ -173,12 +173,11 @@ sendBtn.onclick = async function() {
     }
 
     if (!validarCampos({ email })) return;
-    const token = generateUniqueToken();
 
     const res = await fetchData("http://localhost:4000/api/recover", { email });
 
     if (res.status === "Success") {
-        const resetLink = `http://localhost:4000/reset-password/${token}`;
+        const resetLink = res.recoveryLink;
 
         // Llamar a EmailJS para enviar el correo
         try {

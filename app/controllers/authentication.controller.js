@@ -125,12 +125,16 @@ function recover(req, res) {
         const token = jwt.sign(
             { id: row.id, email: row.email },
             "ColoColo1234", 
-            { expiresIn: "15m" }
+            { expiresIn: "2h" }
         );
+        
+        console.log("Token generado:", token);
+        
+        const recoveryLink = `http://localhost:4000/reset-password?token=${token}`;
+        console.log("🔗 Enlace de recuperación:", recoveryLink);
 
-        const recoveryLink = `http://localhost:4000/reset-password/${token}`;
 
- 
+
         return res.status(200).send({
             status: "Success",
             message: "Recovery link generated",
@@ -150,25 +154,39 @@ function resetPassword(req, res) {
     const { token, password } = req.body;
 
     if (!token || !password) {
-        return res.status(400).json({ message: "Token or password missing" });
+        return res.status(400).json({ 
+            status: "Error",
+            message: "Token or password missing"
+        });
     }
 
+    console.log("Token recibido:", token);
+
+
     // Verificar el token
-    jwt.verify(token, 'ColoColo1234', (err, decoded) => {
+    jwt.verify(token, "ColoColo1234", (err, decoded) => {
         if (err) {
-            return res.status(400).json({ message: "Invalid or expired token" });
+            return res.status(400).json({ 
+                status: "Error",
+                message: "Invalid or expired token"
+            });
         }
-
-
+    
         const hashedPassword = bcrypt.hashSync(password, 10);
-
         const sql = `UPDATE users SET password = ? WHERE id = ?`;
+
         db.run(sql, [hashedPassword, decoded.id], function(err) {
             if (err) {
-                return res.status(500).json({ message: "Error updating password" });
+                return res.status(500).json({ 
+                    status: "Error",
+                    message: "Error updating password"
+                });
             }
 
-            return res.status(200).json({ message: "Password successfully updated" });
+            return res.status(200).json({
+                status: "Success",
+                message: "Password successfully updated"
+            });
         });
     });
 }
