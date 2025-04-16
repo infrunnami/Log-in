@@ -4,16 +4,32 @@
 │   ├── pages
 │   │   └── adnim   
 │   │       └── adnim.html
-│   │   └── login.html      
+│   │   └── login.html     
+│   │   └── reset-password.html   
 │   ├── public
 │   │   └── css   
 │   │   │   └── login.css
+│   │   │   └── reset-password.css
 │   │   └── img   
 │   │   │   └── foto.jpg    
 │   │   └── js   
 │   │       └── login.js    
+│   │       └── reset-password.js    
 │   ├── database.bd  
 │   ├── index.js
 │   ├── node_modules
 │   ├── package-lock.json
 │   ├── package.json
+
+
+
+
+@emailjs/browser
+bcryptjs
+cookie-parser
+dotenv
+express
+jsonwebtoken
+mongoose
+sqlite3
+nodemon

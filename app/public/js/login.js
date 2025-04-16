@@ -158,21 +158,49 @@ forgotPsw.onclick = function () {
 
 };
 
-sendBtn.onclick = function() {
+
+function generateUniqueToken() {
+    return new Date().getTime().toString(36); // Convierte el tiempo actual en milisegundos a base 36 para hacer un token único
+}
+
+sendBtn.onclick = async function() {
     const email = emailInput.value.trim();
 
-    if (!email ) {
+    if (!email) {
         alert("Please enter a valid email.");
         return;
     }
 
-    emailInput.value = "";
+    if (!validarCampos({ email })) return;
+    const token = generateUniqueToken();
 
+    const res = await fetchData("http://localhost:4000/api/recover", { email });
+
+    if (res.status === "Success") {
+        const resetLink = `http://localhost:4000/reset-password/${token}`;
+
+        // Llamar a EmailJS para enviar el correo
+        try {
+            const response = await emailjs.send("CorreoLogin", "LoginPassword", {
+                to_email: email,
+                name: email,
+                reset_link: resetLink // El enlace de recuperación
+            }, "0NOvUMPdB6iz0BoOK");
     
+            console.log("Correo de recuperación enviado:", response);
+            alert("A recovery link has been sent to: " + email);
+        } catch (error) {
+            console.error("Error al enviar el correo:", error);
+            alert("Error sending the email. Please try again.");
+        }
+    } else {
+        alert("Email not found.");
+    }
+    emailInput.value = "";
     console.log("Datos Recover Password:", { email });
+};
 
-    alert("A recovery link has been sent to: " + email);
-}
+
 
 returnLogin.onclick = function () {
     nameField.style.maxHeight = signInView ? "0" : "60px";
@@ -187,3 +215,17 @@ returnLogin.onclick = function () {
     recoverPsw.classList.remove("hidden");
 };
 
+function sendRecoveryEmail(email) {
+    emailjs.send("CorreoLogin", "LoginPassword", {
+      to_email: email,
+    }).then(
+      function(response) {
+        console.log("Correo enviado", response);
+        alert("Correo de recuperación enviado a " + email);
+      },
+      function(error) {
+        console.log("Error al enviar", error);
+        alert("Error sending the email.");
+      }
+    );
+  }

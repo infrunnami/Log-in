@@ -49,7 +49,15 @@ app.use(express.json());
 //rutas
 app.get('/', (req, res)=> res.sendFile(__dirname + "/pages/login.html"));
 app.get('/admin', (req, res)=> res.sendFile(__dirname + "/pages/admin/admin.html"));
+app.get('/reset-password/:token', (req, res) => {
+    const { token } = req.params;  // Obtener el token de la URL
+    res.sendFile(path.join(__dirname, '/pages/reset-password.html'));  // Enviar la vista
+});
+
+
 app.post('/api/login', authentication.login);
 app.post('/api/register', authentication.register);
+app.post('/api/recover', authentication.recover);
+app.post('/api/reset-password', authentication.resetPassword);
 
 
