@@ -31,7 +31,8 @@ async function fetchData(url, data) {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
+            credentials: 'same-origin'
         });
 
         const resData = await res.json();

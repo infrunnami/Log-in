@@ -25,8 +25,11 @@ submitBtn.addEventListener("click", async function (event) {
         return;
     }
 
+    console.log("Token:", token);
+    console.log("New password:", newPassword);
+
     // Realizar la petición de actualización de contraseña
-    const response = await fetch("/reset-password", {
+    const response = await fetch("/api/reset-password", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

@@ -33,17 +33,18 @@ function login(req, res) {
                 console.error('Error comparing password, ', err.message);
                 return res.status(500).send({ status: "Error", message: "Internal error" });
             }
-
             if (result) {
-                // contraseña correcta
+                req.session.usuario = {
+                    id: row.id,
+                    name: row.name,
+                    email: row.email
+                };
+            
+                console.log("Sesión creada:", req.session.usuario);
+            
                 return res.status(200).send({
                     status: "Success",
-                    message: "Login successful",
-                    user: {
-                        id: row.id,
-                        name: row.name,
-                        email: row.email
-                    }
+                    message: "Login successful"
                 });
 
             } else {
@@ -145,6 +146,7 @@ function recover(req, res) {
 
 // reset password
 function resetPassword(req, res) {
+    console.log("Request body:", req.body);
     const { token, password } = req.body;
 
     if (!token || !password) {
