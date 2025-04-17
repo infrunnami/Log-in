@@ -1,6 +1,8 @@
 ├── app
 │   ├── controllers    
-│   │   └── authentication.controller.js          
+│   │   └── authentication.controller.js      
+│   ├── middlewares    
+│   │   └── auth.middleware.js        
 │   ├── pages
 │   │   └── adnim   
 │   │       └── adnim.html

@@ -20,6 +20,6 @@ document.getElementById('logoutBtn').addEventListener('click', async function ()
         }
     } catch (error) {
         console.error('Error cerrando sesión:', error);
-        alert("Error al cerrar sesión");
+        alert("Error logging out");
     }
 });

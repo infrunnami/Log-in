@@ -160,10 +160,6 @@ forgotPsw.onclick = function () {
 };
 
 
-function generateUniqueToken() {
-    return new Date().getTime().toString(36); // Convierte el tiempo actual en milisegundos a base 36 para hacer un token único
-}
-
 sendBtn.onclick = async function() {
     const email = emailInput.value.trim();
 

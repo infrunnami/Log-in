@@ -131,7 +131,7 @@ function recover(req, res) {
         console.log("Token generado:", token);
         
         const recoveryLink = `http://localhost:4000/reset-password?token=${token}`;
-        console.log("🔗 Enlace de recuperación:", recoveryLink);
+        console.log("Enlace de recuperación:", recoveryLink);
 
 
 
